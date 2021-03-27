@@ -1,0 +1,185 @@
+* {box-sizing: border-box;}
+
+$blueGray: rgb(142, 142, 177);
+$greenLight: rgb(108, 101, 139);
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-width: 360px;
+}
+
+.header {
+  background-color: $blueGray;
+  width: 100%;
+  h2 {
+    margin: 0;
+    width:100%;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+  }
+}
+
+.dashBoard {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  padding: 5px 0 5px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 14px;
+  background-color: $greenLight;
+  color: #fff;
+  input {
+    margin: 0 5px;
+    width: 33px;
+    border: 1px dotted rgb(250, 240, 240);
+    background-color: $greenLight;
+    color:white;
+  }
+  .clearAndDel {
+    margin: 5px 10px;
+    button {
+      color: rgb(194, 240, 240);
+      opacity: .7;
+      background-color: $greenLight;
+      border: none;
+    }
+    button:hover {
+      opacity: 1;
+      color: red;
+    }
+  }
+  .openDashBoard span {
+    padding: 5px 10px;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  .closeDashBoard {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 3px;
+    padding: 1px 5px;
+    background-color: rgb(206, 223, 223);
+    color: purple;
+    border-radius: 3px;
+  }
+  .closeDashBoard:hover {
+    background-color: rgb(209, 169, 96);
+  }
+}
+
+
+.selectBtns {
+  margin: 0 auto;
+  padding: 10px;
+  text-align: left;
+  .leftArrow {
+    margin: 0 35px;
+    padding: 0;
+    background-color: black;
+    color: orange;
+    border-radius: 50%;
+  }
+  .rightArrow {
+    margin: 0 20px;
+    padding: 0;
+    color: orange;
+    background-color: black;
+    border-radius: 50%;
+  }
+  .select {
+    margin: 0 5px;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+
+.search {
+  margin: 0 auto 30px;
+  padding: 10px;
+  color:rgb(138, 37, 0);
+  input {
+    min-width: 300px;
+  }
+}
+
+
+.table {
+  margin: 10px 10px 50px;
+  border-collapse: collapse;
+  border: none;
+  .rowCounters {
+    text-align: center;
+    font-weight: 500;
+    cursor:row-resize;
+  }
+  th {
+    border:1px solid #111;
+    position: relative;
+    height: 30px;
+    background-color: $blueGray;
+    input {
+      height: 100%;
+      border: none;
+      background-color: $blueGray;
+      text-align: center;
+      color: #fff;
+      font-weight: bold;
+    }
+    .rotatedN {
+      transition: .8s;
+      transform: rotate(180deg);
+    }
+    .insertCol {
+      position: absolute;
+      padding: 0 4px;
+      background-color: rgb(184, 204, 231);
+      transform-origin: right;
+      right: 0;
+      bottom: 0;
+      opacity: .5;
+      transition: .5s;
+      font-size: 10px;
+      border-top-left-radius: 8px;
+    }
+    .insertCol:hover {
+      opacity: 1;
+      transform: scaleX(2);
+      border-top-left-radius: 0;
+      background-color: rgb(207, 223, 246);
+      cursor:col-resize;
+      color:white;
+    }
+  }
+  td {
+    position: relative;
+    border:1px solid #111;
+  }
+  .textArea {
+    height:100%;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 5px;
+    resize: none;
+    overflow-y: auto;
+  }
+}
+
