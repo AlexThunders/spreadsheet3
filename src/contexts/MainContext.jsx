@@ -37,6 +37,14 @@ function MainContextProvider({children}) {
 
   const [reversed,setReversed] = useState(false);
 
+  const [openSearch4Col,setOpenSearch4Col] = useState(false);
+
+  const [data4Search,setData4Search] = useState(() => {
+    const local = localStorage.getItem('datas');
+    return datas ? JSON.parse(local) : [];
+  });
+
+
   // const [deletionOfRow,setDeletionOfRow] = useState(false);
 
 
@@ -93,6 +101,7 @@ function MainContextProvider({children}) {
 
   useEffect(() => {
     localStorage.setItem('datas',JSON.stringify(datas));
+    localStorage.setItem('data4Search',JSON.stringify(data4Search));
   },[datas])
 
   const saveHeadings = (inp,col) => {
@@ -200,8 +209,6 @@ function MainContextProvider({children}) {
   const addColRight = () => {
     if(datas.length === 0) return;
     datas.length > 0 && datas.map(data => {
-      console.log(data.column)
-      console.log(portalCol)
       if(data.column > portalCol) {
         data.column++;
       }
@@ -271,6 +278,36 @@ function MainContextProvider({children}) {
     setReversed(reversed => !reversed);
   }
 
+  const openColSearch = (col) => {
+    setOpenSearch4Col(true);
+    setPortalCol(col);
+  }
+  
+  const closeColSearch = (col) => {
+    setPortalCol(col);
+    setOpenSearch4Col(false);
+  }
+
+  const searchColumn = (col,inp) => {
+    let arr = [];
+    data4Search.map(data => {
+      let length = inp.length;
+      if(inp.slice(0).toLowerCase() === data.text.slice(0,length).toLowerCase() && col === data.column) {
+        arr.push(data.row);
+        setRows(arr);
+        for(let r = 0; r < arr.length; r++) {
+          if(arr[r] === data.row) {
+            setData4Search([...data4Search, {column:col, row: r, text: data.text}])
+            console.log(data4Search)
+          }
+        }
+      }
+      if(inp === '') {
+        saveRows(numberOfInitRows);
+      }
+    })
+  }
+
 
   return (
     <div>
@@ -284,6 +321,7 @@ function MainContextProvider({children}) {
         portalRow,
         portalCol,
         reversed,
+        openSearch4Col,
         saveCols,
         saveRows,
         saveRowsPerPage,
@@ -299,7 +337,10 @@ function MainContextProvider({children}) {
         clear,
         deleteTable,
         deleteRow,
-        reverse
+        reverse,
+        searchColumn,
+        openColSearch,
+        closeColSearch
       }}>
         {children}
       </MainContext.Provider>

@@ -7,6 +7,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  min-width: 320px;
 }
 
 .grid {
@@ -27,24 +28,23 @@ body {
 }
 
 .header {
-  background-color: #8e8eb1;
-  width: 100%;
+  background-color: #676788;
+  min-width: 100vw;
 }
 
 .header h2 {
   margin: 0;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
+  padding: 10px 50px 10px 150px;
+  text-align: left;
   text-transform: uppercase;
   color: #fff;
 }
 
 .dashBoard {
-  height: 50px;
-  width: 100%;
+  min-height: 150px;
+  min-width: 320px;
   position: relative;
-  padding: 5px 0 5px 5px;
+  padding: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -58,39 +58,49 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 14px;
-  background-color: #6c658b;
-  color: #fff;
+  font-size: 20px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  background: -webkit-gradient(linear, left top, right top, from(#6b8ecf), to(#fff));
+  background: linear-gradient(to right, #6b8ecf, #fff);
+  color: #111;
 }
 
 .dashBoard input {
   margin: 0 5px;
   width: 33px;
   border: 1px dotted #faf0f0;
-  background-color: #6c658b;
-  color: white;
+  background-color: #eeaf4b;
+  color: #111;
 }
 
 .dashBoard .clearAndDel {
-  margin: 5px 10px;
+  margin: 20px 10px;
 }
 
 .dashBoard .clearAndDel button {
-  color: #c2f0f0;
+  -webkit-transition: .3s;
+  transition: .3s;
+  color: #060808;
   opacity: .7;
-  background-color: #6c658b;
+  background-color: #695046;
   border: none;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 .dashBoard .clearAndDel button:hover {
   opacity: 1;
   color: red;
+  background-color: burlywood;
 }
 
 .dashBoard .openDashBoard span {
   padding: 5px 10px;
+  font-weight: 700;
   text-transform: uppercase;
   width: 100%;
+  cursor: pointer;
 }
 
 .dashBoard .closeDashBoard {
@@ -100,12 +110,16 @@ body {
   margin: 3px;
   padding: 1px 5px;
   background-color: #cedfdf;
-  color: purple;
+  color: #800064;
   border-radius: 3px;
 }
 
 .dashBoard .closeDashBoard:hover {
-  background-color: #d1a960;
+  background-color: #d18460;
+}
+
+.dashBoard:hover {
+  color: #6a25aa;
 }
 
 .selectBtns {
@@ -117,20 +131,42 @@ body {
 .selectBtns .leftArrow {
   margin: 0 35px;
   padding: 0;
-  background-color: black;
-  color: orange;
+  color: #ff7b00;
   border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2em;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.selectBtns .leftArrow:hover {
+  color: #70288d;
+}
+
+.selectBtns .leftArrow:active {
+  color: red;
 }
 
 .selectBtns .rightArrow {
   margin: 0 20px;
   padding: 0;
-  color: orange;
-  background-color: black;
-  border-radius: 50%;
+  color: #ff7b00;
+  cursor: pointer;
+  font-size: 1.2em;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.selectBtns .rightArrow:hover {
+  color: #70288d;
+}
+
+.selectBtns .rightArrow:active {
+  color: red;
 }
 
 .selectBtns .select {
+  cursor: pointer;
   margin: 0 5px;
   border: none;
   font-size: 20px;
@@ -163,23 +199,68 @@ body {
   border: 1px solid #111;
   position: relative;
   height: 30px;
-  background-color: #8e8eb1;
+  background-color: #676788;
+  min-width: 40px;
 }
 
 .table th input {
-  height: 100%;
-  border: none;
-  background-color: #8e8eb1;
   text-align: center;
+  height: 100%;
+  width: 200px;
+  border: none;
+  background-color: #676788;
   color: #fff;
+  font-size: 1em;
+  text-transform: uppercase;
   font-weight: bold;
 }
 
 .table th .rotatedN {
-  -webkit-transition: .8s;
-  transition: .8s;
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+.table th .search4ColInp {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  background-color: #a7d5e0;
+  color: #111;
+  z-index: 5;
+  bottom: 105%;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.table th .sortColOpen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  font-size: 1.2em;
+  opacity: .9;
+  cursor: pointer;
+  color: #bcccf0;
+}
+
+.table th .sortColOpen:hover {
+  color: white;
+}
+
+.table th .sortColClose {
+  position: absolute;
+  bottom: 149%;
+  left: 86%;
+  padding: 5px;
+  font-size: 1.2em;
+  opacity: .9;
+  cursor: pointer;
+  color: #5f77af;
+  z-index: 10;
+}
+
+.table th .sortColClose:hover {
+  color: #530bfb;
 }
 
 .table th .insertCol {
@@ -213,12 +294,13 @@ body {
 }
 
 .table .textArea {
-  height: 100%;
+  min-height: 50px;
+  width: 100%;
+  font-size: 1em;
   border: none;
   outline: none;
   margin: 0;
   padding: 5px;
   resize: none;
-  overflow-y: auto;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,4 +1,4 @@
-import React, {useState,useContext,useRef} from 'react';
+import React, {useState,useEffect,useContext,useRef} from 'react';
 import {MainContext} from '../contexts/MainContext';
 
 function Dashboard() {
@@ -10,6 +10,11 @@ function Dashboard() {
   const colsRef = useRef();
   const rowsRef = useRef();
   const rowsPerPagesRef = useRef();
+
+  const handleOpen = () => {
+    setOpen(true);
+    setTimeout(() => {colsRef.current.focus()},500);
+  }
 
   const handleColsChange = (e) => {
     let value = e.target.value;
@@ -70,7 +75,7 @@ function Dashboard() {
             value={colsInp}
             onChange={handleColsChange}
             onKeyDown={submitCols}
-          />
+          /><br></br>
           <lable is="3dx">Rows:</lable>
           <input 
             ref={rowsRef}
@@ -78,7 +83,7 @@ function Dashboard() {
             value={rowsInp}
             onChange={handleRowsChange}
             onKeyDown={submitRows}
-          />
+          /><br></br>
           <lable is="3dx">Rows per page:</lable>
           <input 
             ref={rowsPerPagesRef}
@@ -86,16 +91,16 @@ function Dashboard() {
             value={rowsPerPageInp}
             onChange={handleRowsPerPageChange}
             onKeyDown={submitRowsPerPage}
-          />
+          /><br></br>
         </div>
         <div className="clearAndDel">
           <button onClick={clear}>Clear all data</button>
           <button onClick={deleteTable}>Delete spreadsheet</button>
         </div>
-        <span className="closeDashBoard" onClick={() => setOpen(false)}>x</span>
+        <span className="closeDashBoard" onClick={() => setOpen(false)}><i className="fas fa-window-close"></i></span>
       </>
       : 
-        <div className="openDashBoard" onClick={() => setOpen(true)}><span>Open dashboard</span></div> 
+        <div className="openDashBoard" onClick={handleOpen}><span>Open dashboard</span></div> 
       }
     </div>
   )

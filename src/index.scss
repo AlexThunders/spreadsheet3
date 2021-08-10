@@ -1,12 +1,13 @@
 * {box-sizing: border-box;}
 
-$blueGray: rgb(142, 142, 177);
-$greenLight: rgb(108, 101, 139);
+$blueGray: rgb(103, 103, 136);
+$greenLight: rgb(107, 142, 207);
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  min-width: 320px;
 }
 
 
@@ -20,53 +21,59 @@ body {
 
 .header {
   background-color: $blueGray;
-  width: 100%;
+  min-width: 100vw;
   h2 {
     margin: 0;
-    width:100%;
-    padding: 10px;
-    text-align: center;
+    padding: 10px 50px 10px 150px;
+    text-align: left;
     text-transform: uppercase;
     color: #fff;
   }
 }
 
 .dashBoard {
-  height: 50px;
-  width: 100%;
+  min-height: 150px;
+  min-width: 320px;
   position: relative;
-  padding: 5px 0 5px 5px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  font-size: 14px;
-  background-color: $greenLight;
-  color: #fff;
+  font-size: 20px;
+  transition: .4s;
+  background: linear-gradient(to right,$greenLight,#fff);
+  color: #111;
   input {
     margin: 0 5px;
     width: 33px;
     border: 1px dotted rgb(250, 240, 240);
-    background-color: $greenLight;
-    color:white;
+    background-color: rgb(238, 175, 75);
+    color:#111;
   }
   .clearAndDel {
-    margin: 5px 10px;
+    margin: 20px 10px;
     button {
-      color: rgb(194, 240, 240);
+      transition: .3s;
+      color: rgb(6, 8, 8);
       opacity: .7;
-      background-color: $greenLight;
+      background-color: rgb(105, 80, 70);
       border: none;
+      border-radius: 2px;
+      cursor: pointer;
     }
     button:hover {
       opacity: 1;
       color: red;
+      background-color: burlywood;
     }
   }
   .openDashBoard span {
     padding: 5px 10px;
+    font-weight: 700;
     text-transform: uppercase;
     width: 100%;
+    cursor: pointer;
   }
   .closeDashBoard {
     position: absolute;
@@ -75,14 +82,17 @@ body {
     margin: 3px;
     padding: 1px 5px;
     background-color: rgb(206, 223, 223);
-    color: purple;
+    color: rgb(128, 0, 100);
     border-radius: 3px;
   }
   .closeDashBoard:hover {
-    background-color: rgb(209, 169, 96);
+    background-color: rgb(209, 132, 96);
   }
 }
 
+.dashBoard:hover {
+  color:rgb(106, 37, 170);
+}
 
 .selectBtns {
   margin: 0 auto;
@@ -91,18 +101,34 @@ body {
   .leftArrow {
     margin: 0 35px;
     padding: 0;
-    background-color: black;
-    color: orange;
+    color: rgb(255, 123, 0);
     border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: .3s;
+  }
+  .leftArrow:hover {
+    color:rgb(112, 40, 141);
+  }
+  .leftArrow:active {
+    color: red;
   }
   .rightArrow {
     margin: 0 20px;
     padding: 0;
-    color: orange;
-    background-color: black;
-    border-radius: 50%;
+    color: rgb(255, 123, 0);
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: .3s;
+  }
+  .rightArrow:hover {
+    color:rgb(112, 40, 141);
+  }
+  .rightArrow:active {
+    color: red;
   }
   .select {
+    cursor: pointer;
     margin: 0 5px;
     border: none;
     font-size: 20px;
@@ -135,18 +161,54 @@ body {
     position: relative;
     height: 30px;
     background-color: $blueGray;
+    min-width: 40px;
     input {
+      text-align: center;
       height: 100%;
+      width: 200px;
       border: none;
       background-color: $blueGray;
-      text-align: center;
       color: #fff;
+      font-size: 1em;
+      text-transform: uppercase;
       font-weight: bold;
     }
     .rotatedN {
-      transition: .8s;
       transform: rotate(180deg);
     }
+    .search4ColInp {
+      position: absolute;
+      width:100%;
+      left:0;
+      background-color: rgb(167, 213, 224);
+      color:#111;
+      z-index: 5;
+      bottom: 105%;
+      transition: 1s;
+    }
+    .sortColOpen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px;
+      font-size: 1.2em;
+      opacity: .9;
+      cursor: pointer;
+      color:rgb(188, 204, 240);
+    }
+    .sortColOpen:hover {color:white;}
+    .sortColClose {
+      position: absolute;
+      bottom: 149%;
+      left: 86%;
+      padding: 5px;
+      font-size: 1.2em;
+      opacity: .9;
+      cursor: pointer;
+      color:rgb(95, 119, 175);
+      z-index: 10;
+    }
+    .sortColClose:hover {color:rgb(83, 11, 251);}
     .insertCol {
       position: absolute;
       padding: 0 4px;
@@ -173,13 +235,15 @@ body {
     border:1px solid #111;
   }
   .textArea {
-    height:100%;
+    min-height:50px;
+    width: 100%;
+    font-size: 1em;
     border: none;
     outline: none;
     margin: 0;
     padding: 5px;
     resize: none;
-    overflow-y: auto;
+    // overflow-y: auto;
   }
 }
 

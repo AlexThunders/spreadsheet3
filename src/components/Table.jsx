@@ -43,8 +43,6 @@ const Input = ({col}) => {
 }
 
 
-
-
 const Textarea = ({col,row,styleRow,styleCol}) => {
   const {saveDatas,datas} = useContext(MainContext);
   const [inp,setInp] = useState('');
@@ -81,9 +79,51 @@ const Textarea = ({col,row,styleRow,styleCol}) => {
   )
 }
 
+const Search4Col = ({col}) => {
+  const [search4ColInp,setSearch4ColInp] = useState('');
+  const {searchColumn,openSearch4Col,closeColSearch,openColSearch} = useContext(MainContext);
+
+  // useEffect(() => {
+    // searchColumn(col,search4ColInp);
+  // },[search4ColInp])
+  
+  const handleColSearch = (e) => {
+    if(e.keyCode === 13) {
+      searchColumn(col,search4ColInp);
+    }
+  }
+
+
+  return (
+    <>
+      <input 
+        className="search4ColInp"
+        type="text"
+        value={search4ColInp}
+        onChange={e => setSearch4ColInp(e.target.value)}
+        onKeyDown={e => handleColSearch(e)}
+        />
+      {openSearch4Col && <i onClick={() => closeColSearch(col)} className="far fa-window-close sortColClose"></i>}
+      </>
+  )
+}
+
 
 function Table({sheet}) {
-  const {cols,openColsPortal,openPortal4Cols,portalCol,openPortal4Rows,openRowsPortal,portalRow,reverse,reversed} = useContext(MainContext);
+  const {
+    cols,
+    openColsPortal,
+    openPortal4Cols,
+    portalCol,
+    openPortal4Rows,
+    openRowsPortal,
+    portalRow,
+    reverse,
+    reversed,
+    openSearch4Col,
+    openColSearch,
+    closeColSearch
+  } = useContext(MainContext);
 
   const openRowsPort = (row) => {
     openRowsPortal(row);
@@ -108,14 +148,18 @@ function Table({sheet}) {
       <table className="table">
         <thead>
           <tr>
-            <th style={{fontSize: '13px',textAlign:'center',width:'30px'}} onClick={reverse}>
-              <p className={reversed ? "rotatedN" : ""}>\/</p>
+            <th style={{fontSize: '15px'}} onClick={reverse}>
+              <p className={reversed ? "rotatedN" : ""}><i style={{color: '#fff'}} className="fas fa-caret-square-down"></i></p>
             </th>
             {cols.map(col => (
               <th key={uuidv4()} >
                 {openPortal4Cols && ((col === portalCol) && <ColsPortal />)}
                 <span className="insertCol" onClick={() => openColPort(col)}>
                   {cols.indexOf(col)+1}
+                </span>
+                <span>
+                  {(openSearch4Col && col === portalCol) && <Search4Col col={col} />}
+                  <i onClick={() => openColSearch(col)} className="fas fa-sort sortColOpen"></i>
                 </span>
                 <Input col={col}/>
               </th>
